@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
-  NotificationsNone as NotificationsIcon,
   FormatSize as TypographyIcon,
   FilterNone as UIElementsIcon,
   BorderAll as TableIcon,
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
+
+// import SettingsIcon from '@mui/icons-material/Settings';
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
@@ -27,44 +28,43 @@ import {
 
 const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
-  // { id: 1, type: "divider" },
   {
-    id: 2,
+    id: 1,
     label: "Cadastros",
-    link: "/app/ui",
+    link: "/app/cadastros",
     icon: <UIElementsIcon />,
     children: [
-      { label: "Clientes", link: "/app/ui/icons" },
-      { label: "Fornecedores", link: "/app/ui/charts" },
-      { label: "Notas Fiscais", link: "/app/ui/maps" },
+      { label: "Clientes", link: "/app/icons" },
+      { label: "Fornecedores", link: "/app/cadastros/fornecedores" },
+      { label: "Notas Fiscais", link: "/app/maps" },
     ],
   },
-  { id: 3, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
+  // {
+  //   id: 3,
+  //   label: "UI Elements",
+  //   link: "/app",
+  //   icon: <UIElementsIcon />,
+  //   children: [
+  //     { label: "Icons", link: "/app/icons" },
+  //     { label: "Charts", link: "/app/charts" },
+  //     { label: "Maps", link: "/app/maps" },
+  //   ],
+  // },
   {
     id: 4,
-    label: "Notifications",
-    link: "/app/notifications",
-    icon: <NotificationsIcon />,
-  },
-  {
-    id: 5,
-    label: "UI Elements",
-    link: "/app/ui",
-    icon: <UIElementsIcon />,
-    children: [
-      { label: "Icons", link: "/app/ui/icons" },
-      { label: "Charts", link: "/app/ui/charts" },
-      { label: "Maps", link: "/app/ui/maps" },
-    ],
-  },
-  {
-    id: 6,
     label: "Typography",
     link: "/app/typography",
     icon: <TypographyIcon />,
   },
-  { id: 7, type: "divider" },
-  { id: 8, type: "title", label: "HELP" },
+  { id: 5, type: "divider" },
+  {
+    id: 6,
+    label: "Configurações",
+    link: "/app/configuracoes",
+    icon: <TypographyIcon />,
+  },
+  { id: 7, type: "title", label: "HELP" },
 
 ];
 

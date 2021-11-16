@@ -1,0 +1,6 @@
+{
+    "name": "Fornecedores",
+    "version": "0.0.0",
+    "main": "Fornecedores.js",
+    "private": true
+}
