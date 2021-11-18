@@ -34,23 +34,23 @@ const structure = [
     link: "/app/cadastros",
     icon: <UIElementsIcon />,
     children: [
-      { label: "Clientes", link: "/app/icons" },
+      { label: "Clientes", link: "/app/cadastros/clientes" },
       { label: "Fornecedores", link: "/app/cadastros/fornecedores" },
-      { label: "Notas Fiscais", link: "/app/maps" },
+      { label: "Notas Fiscais", link: "/app/cadastros/notas-fiscais" },
     ],
   },
   { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
-  // {
-  //   id: 3,
-  //   label: "UI Elements",
-  //   link: "/app",
-  //   icon: <UIElementsIcon />,
-  //   children: [
-  //     { label: "Icons", link: "/app/icons" },
-  //     { label: "Charts", link: "/app/charts" },
-  //     { label: "Maps", link: "/app/maps" },
-  //   ],
-  // },
+  {
+    id: 3,
+    label: "UI Elements",
+    link: "/app",
+    icon: <UIElementsIcon />,
+    children: [
+      { label: "Icons", link: "/app/icons" },
+      { label: "Charts", link: "/app/charts" },
+      { label: "Maps", link: "/app/maps" },
+    ],
+  },
   {
     id: 4,
     label: "Typography",

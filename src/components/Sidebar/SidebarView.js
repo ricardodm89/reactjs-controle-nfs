@@ -24,9 +24,9 @@ const structure = [
     link: "/app/cadastros",
     icon: <UIElementsIcon />,
     children: [
-      { label: "Clientes", link: "/app/icons" },
+      { label: "Clientes", link: "/app/cadastros/clientes" },
       { label: "Fornecedores", link: "/app/cadastros/fornecedores" },
-      { label: "Notas Fiscais", link: "/app/maps" },
+      { label: "Notas Fiscais", link: "/app/cadastros/notas-fiscais" },
     ],
   },
   { id: 2, label: 'Tables', link: '/app/tables', icon: <TableIcon /> },

@@ -15,12 +15,14 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
-import Fornecedores from "../../pages/register/fornecedores/Fornecedores";
 import Typography from "../../pages/typography";
 import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
+import Customers from "../../pages/register/customers/Customers";
+import Providers from "../../pages/register/providers/Providers";
+import Invoices from "../../pages/register/invoices/Invoices";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -44,7 +46,9 @@ function Layout(props) {
           <div className={classes.fakeToolbar} />
           <Switch>
             <Route path="/app/dashboard" component={Dashboard} />
-            <Route path="/app/cadastros/fornecedores" compoment={Fornecedores} />
+            <Route path="/app/cadastros/clientes" component={Customers} />
+            <Route path="/app/cadastros/fornecedores" component={Providers} />
+            <Route path="/app/cadastros/notas-fiscais" component={Invoices} />
 
             <Route path="/app/typography" component={Typography} />
             <Route path="/app/tables" component={Tables} />
