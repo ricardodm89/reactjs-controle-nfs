@@ -36,7 +36,7 @@ function Customers() {
         const getCustomers = async () => {
             await api.get(`customers`)
                 .then((res) => {
-                    console.log('data: ', res.data)
+                    // console.log('data: ', res.data)
                     setCostumers(res.data)
                 })
                 .catch((error) => {
@@ -54,7 +54,19 @@ function Customers() {
             ...values,
             [name]: value
         })
-        console.log(values)
+        // console.log(values)
+    }
+
+    const resetForm = () => {
+        setValues({ values: '' });
+    }
+
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        console.log('submit:', values)
+        api.post('/customers', values);
+        resetForm()
     }
 
     return (
@@ -70,7 +82,7 @@ function Customers() {
                     </div>
                 ))} */}
                 <Box padding={4}>
-                    <form>
+                    <form onSubmit={handleSubmit} onReset={resetForm}>
                         <Grid container spacing={2}>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
                                 <TextField
@@ -245,7 +257,7 @@ function Customers() {
                                     fullWidth
                                     id="email"
                                     name="email"
-                                    type="text"
+                                    type="email"
                                     label="E-mail"
                                     variant="standard"
                                     values={values.email}
@@ -263,7 +275,7 @@ function Customers() {
                             >
                                 Enviar
                             </Button>
-                            <Button variant="contained" type="reset" className={classes.button}>
+                            <Button variant="contained" type='reset' className={classes.button}>
                                 Limpar
                             </Button>
                         </Grid>
