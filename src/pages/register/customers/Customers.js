@@ -8,10 +8,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import api from '../../../services/api'
 import useStyles from "./styles";
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
-
 const columns = [
     {
         id: 'nome',
