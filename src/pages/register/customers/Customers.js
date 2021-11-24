@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField } from "@material-ui/core";
+import { Box, Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import PageTitle from "../../../components/PageTitle";
 import { Link } from 'react-router-dom'
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -19,65 +19,78 @@ const columns = [
         id: 'cnpj',
         label: 'CNPJ',
         minWidth: 100,
-        align: 'center',
+        align: 'left',
     },
     {
         id: 'email',
         label: 'E-mail',
         minWidth: 130,
-        align: 'center',
+        align: 'left',
     },
     {
         id: 'status',
         label: 'Status',
         minWidth: 100,
-        align: 'center',
+        align: 'left',
     },
     {
         id: 'edit',
         label: 'Editar',
         minWidth: 100,
-        align: 'center',
+        align: 'left',
     },
     {
         id: 'delete',
         label: 'Excluir',
         minWidth: 100,
-        align: 'center',
+        align: 'left',
     },
 ];
 
 
-const handleDelete = ({ idCustomer }) => {
-
-    console.log('delete id: ', idCustomer)
-}
 
 function Customers() {
     const [customers, setCostumers] = useState();
+    // const [data, setData] = useState();
     const classes = useStyles();
+    const [updateCustomers, setUpdateCustomers] = useState(false);
 
     useEffect(() => {
         const getCustomers = async () => {
             await api.get(`customers`)
                 .then((res) => {
-                    console.log('data: ', res.data)
-                    //setCostumers(res.data)
+                    // console.log('data: ', res.data)
+                    setCostumers(res.data)
                 })
                 .catch((error) => {
                     console.log(error)
                 })
         }
         getCustomers()
-    }, [])
+        setUpdateCustomers(false)
+    }, [updateCustomers])
+
+
+    const handleDelete = async (id) => {
+        console.log('id: ', id)
+        await api.delete(`customers/${id}`)
+            .then(response => {
+                console.log('delete sucesso');
+                setUpdateCustomers(true)
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
 
     return (
         <>
             <PageTitle title="Clientes" />
             <Paper elevation={3}>
                 <Box padding={4}>
-                    <Link to='clientes-form'>
-                        <Button variant="contained" color="primary" className={classes.button}>
+                    <Link to='clientes-form' style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" color="primary" >
                             Adicionar cliente
                         </Button>
                     </Link>
@@ -90,7 +103,7 @@ function Customers() {
                                 <TableRow>
                                     {columns.map((column) => (
                                         <TableCell
-                                            Key={column.id}
+                                            key={column.id}
                                             align={column.align}
                                             style={{ minWidth: column.minWidth }}>
                                             {column.label}
@@ -106,12 +119,12 @@ function Customers() {
                                         <TableCell>{customer.email}</TableCell>
                                         <TableCell>{customer.status}</TableCell>
                                         <TableCell>
-                                            <Link to={`clientes-form/${'customer.id'}`}>
-                                                <EditOutlinedIcon color="primary" />
+                                            <Link to={`clientes-form/${customer.id}`}>
+                                                <Button type="button" className="btn btn-link"><EditOutlinedIcon color="primary" /></Button>
                                             </Link>
                                         </TableCell>
                                         <TableCell>
-                                            <button type="button" onClick={() => handleDelete(customer.id)} className="btn btn-link"><DeleteIcon color="primary" /></button>
+                                            <Button type="button" onClick={() => handleDelete(customer.id)} className="btn btn-link"><DeleteIcon color="primary" /></Button>
                                         </TableCell>
                                     </TableRow>
                                 ))}

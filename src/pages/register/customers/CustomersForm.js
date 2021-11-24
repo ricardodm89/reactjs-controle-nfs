@@ -56,8 +56,8 @@ function CustomersForm() {
                 .string("Digite a razão social")
                 .required("Razão Social é obrigatório."),
             name: yup
-              .string("Digite o nome fantasia")
-              .required("Nome Fantasia é obrigatório."),
+                .string("Digite o nome fantasia")
+                .required("Nome Fantasia é obrigatório."),
             cnpj: yup
                 .string("Digite o CNPJ")
                 .required("CNPJ é obrigatório."),
@@ -66,7 +66,7 @@ function CustomersForm() {
                 .required('Status é obrigatório'),
             segment: yup
                 .string('Digite o Segmento')
-                .required('Segmento é obrigatório'),    
+                .required('Segmento é obrigatório'),
             cep: yup
                 .string('Digite o CEP')
                 .required('CEP é obrigatório'),
@@ -77,7 +77,7 @@ function CustomersForm() {
                 .string('Digite o número')
                 .required('Número é obrigatório'),
             adjunct: yup
-                .string('Digite o completemento'),       
+                .string('Digite o completemento'),
             neighborhood: yup
                 .string('Digite o bairro')
                 .required('Bairro é obrigatório'),
@@ -95,11 +95,11 @@ function CustomersForm() {
             email: yup
                 .string('Digite o e-mail')
                 .required('E-mail é obrigatório'),
-          }),
-          onBlur:(field,{setFieldValue}) => {
-               console.log('ONBLUR');
-               setFieldValue(field);
-          },
+        }),
+        onBlur: (field, { setFieldValue }) => {
+            // console.log('ONBLUR');
+            // setFieldValue(field);
+        },
         onSubmit: (values, { resetForm }) => {
             // console.log('submit: ', values)
             api.post('/customers', values, {});
@@ -144,6 +144,7 @@ function CustomersForm() {
                     <form
                         onSubmit={formik.handleSubmit}
                         onReset={formik.handleReset}
+                        onBlur={formik.handleBlur}
                     >
                         <Grid container spacing={2}>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
