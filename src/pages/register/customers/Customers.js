@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, Paper, TextField } from "@material-ui/core";
+import { useFormik, withFormik } from 'formik'
 
 import PageTitle from "../../../components/PageTitle";
 // import classNames from "classnames";
@@ -28,9 +29,9 @@ const initialValuesCustomer = {
 function Customers() {
 
     const [customers, setCostumers] = useState();
-    const [values, setValues] = useState(initialValuesCustomer);
+    // const [values, setValues] = useState(initialValuesCustomer);
 
-    var classes = useStyles();
+    const classes = useStyles();
 
     useEffect(() => {
         const getCustomers = async () => {
@@ -46,28 +47,35 @@ function Customers() {
         getCustomers()
     }, [])
 
-    // console.log('Customers: ', customers)
+    const formik = useFormik({
+        initialValues: initialValuesCustomer,
+        onSubmit: (values, { resetForm }) => {
+            // console.log('submit: ', values)
+            api.post('/customers', values, {});
+            resetForm({ values: '' });
+        }
 
-    const handleChange = e => {
-        const { name, value } = e.target
-        setValues({
-            ...values,
-            [name]: value
-        })
-        // console.log(values)
-    }
+    })
 
-    const resetForm = () => {
-        setValues({ values: '' });
-    }
+    // const handleChange = e => {
+    //     const { name, value } = e.target
+    //     setValues({
+    //         ...values,
+    //         [name]: value
+    //     })
+    //     // console.log(values)
+    // }
+
+    // const resetForm = () => {
+    //     setValues({ values: '' });
+    // }
 
 
-    const handleSubmit = event => {
-        event.preventDefault();
-        console.log('submit:', values)
-        api.post('/customers', values);
-        resetForm()
-    }
+    // const handleSubmit = event => {
+    //     event.preventDefault();
+    //     console.log('submit:', values)
+    //     api.post('/customers', values);
+    // }
 
     return (
         <>
@@ -82,7 +90,10 @@ function Customers() {
                     </div>
                 ))} */}
                 <Box padding={4}>
-                    <form onSubmit={handleSubmit} onReset={resetForm}>
+                    <form
+                        onSubmit={formik.handleSubmit}
+                        onReset={formik.handleReset}
+                    >
                         <Grid container spacing={2}>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
                                 <TextField
@@ -92,8 +103,8 @@ function Customers() {
                                     type="text"
                                     label="Razão Social"
                                     variant="standard"
-                                    values={values.corporate_name}
-                                    onChange={handleChange}
+                                    value={formik.values.corporate_name}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
@@ -104,8 +115,8 @@ function Customers() {
                                     type="text"
                                     label="Nome Fantasia"
                                     variant="standard"
-                                    values={values.name}
-                                    onChange={handleChange}
+                                    value={formik.values.name}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={2} md={6} sm={8} xs={12}>
@@ -116,8 +127,8 @@ function Customers() {
                                     type="text"
                                     label="CNPJ"
                                     variant="standard"
-                                    values={values.cnpj}
-                                    onChange={handleChange}
+                                    value={formik.values.cnpj}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={2} md={6} sm={8} xs={12}>
@@ -128,8 +139,8 @@ function Customers() {
                                     type="text"
                                     label="Status"
                                     variant="standard"
-                                    values={values.status}
-                                    onChange={handleChange}
+                                    value={formik.values.status}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={3} md={6} sm={8} xs={12}>
@@ -140,8 +151,8 @@ function Customers() {
                                     type="text"
                                     label="Segmento"
                                     variant="standard"
-                                    values={values.segment}
-                                    onChange={handleChange}
+                                    value={formik.values.segment}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={2} md={6} sm={8} xs={12}>
@@ -152,8 +163,8 @@ function Customers() {
                                     type="text"
                                     label="CEP"
                                     variant="standard"
-                                    values={values.cep}
-                                    onChange={handleChange}
+                                    value={formik.values.cep}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={5} md={6} sm={8} xs={12}>
@@ -164,8 +175,8 @@ function Customers() {
                                     type="text"
                                     label="Logradouro"
                                     variant="standard"
-                                    values={values.street}
-                                    onChange={handleChange}
+                                    value={formik.values.street}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={2} md={6} sm={8} xs={12}>
@@ -176,8 +187,8 @@ function Customers() {
                                     type="text"
                                     label="Número"
                                     variant="standard"
-                                    values={values.number}
-                                    onChange={handleChange}
+                                    value={formik.values.number}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
@@ -188,8 +199,8 @@ function Customers() {
                                     type="text"
                                     label="Complemento"
                                     variant="standard"
-                                    values={values.adjunct}
-                                    onChange={handleChange}
+                                    value={formik.values.adjunct}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
@@ -200,8 +211,8 @@ function Customers() {
                                     type="text"
                                     label="Bairro"
                                     variant="standard"
-                                    values={values.neighborhood}
-                                    onChange={handleChange}
+                                    value={formik.values.neighborhood}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={4} md={6} sm={8} xs={12}>
@@ -212,8 +223,8 @@ function Customers() {
                                     type="text"
                                     label="Cidade"
                                     variant="standard"
-                                    values={values.city}
-                                    onChange={handleChange}
+                                    value={formik.values.city}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={3} md={6} sm={8} xs={12}>
@@ -224,8 +235,8 @@ function Customers() {
                                     type="text"
                                     label="Estado"
                                     variant="standard"
-                                    values={values.uf}
-                                    onChange={handleChange}
+                                    value={formik.values.uf}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={2} md={6} sm={8} xs={12}>
@@ -236,8 +247,8 @@ function Customers() {
                                     type="text"
                                     label="Telefone"
                                     variant="standard"
-                                    values={values.phone}
-                                    onChange={handleChange}
+                                    value={formik.values.phone}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={2} md={6} sm={8} xs={12}>
@@ -248,8 +259,8 @@ function Customers() {
                                     type="text"
                                     label="Telefone"
                                     variant="standard"
-                                    values={values.phone_other}
-                                    onChange={handleChange}
+                                    value={formik.values.phone_other}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                             <Grid item lg={5} md={6} sm={8} xs={12}>
@@ -260,8 +271,8 @@ function Customers() {
                                     type="email"
                                     label="E-mail"
                                     variant="standard"
-                                    values={values.email}
-                                    onChange={handleChange}
+                                    value={formik.values.email}
+                                    onChange={formik.handleChange}
                                 />
                             </Grid>
                         </Grid>
@@ -275,7 +286,7 @@ function Customers() {
                             >
                                 Enviar
                             </Button>
-                            <Button variant="contained" type='reset' className={classes.button}>
+                            <Button variant="contained" type="reset" className={classes.button}>
                                 Limpar
                             </Button>
                         </Grid>
