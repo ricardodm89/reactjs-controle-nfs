@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, Paper, TextField } from "@material-ui/core";
 import { useFormik } from 'formik'
 import * as yup from "yup";
+import onBlurCep from '../../../shared/getCEP';
 
 import PageTitle from "../../../components/PageTitle";
 // import classNames from "classnames";
@@ -95,6 +96,10 @@ function CustomersForm() {
                 .string('Digite o e-mail')
                 .required('E-mail é obrigatório'),
           }),
+          onBlur:(field,{setFieldValue}) => {
+               console.log('ONBLUR');
+               setFieldValue(field);
+          },
         onSubmit: (values, { resetForm }) => {
             // console.log('submit: ', values)
             api.post('/customers', values, {});
@@ -221,6 +226,7 @@ function CustomersForm() {
                                     variant="standard"
                                     value={formik.values.cep}
                                     onChange={formik.handleChange}
+                                    onBlur={onBlurCep}
                                     error={formik.touched.cep && Boolean(formik.errors.cep)}
                                     helperText={formik.touched.cep && formik.errors.cep}
                                 />
