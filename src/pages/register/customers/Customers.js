@@ -61,8 +61,8 @@ function Customers() {
         const getCustomers = async () => {
             await api.get(`customers`)
                 .then((res) => {
-                    // console.log('data: ', res.data)
-                    setCostumers(res.data)
+                    console.log('data: ', res.data)
+                    //setCostumers(res.data)
                 })
                 .catch((error) => {
                     console.log(error)
@@ -99,7 +99,7 @@ function Customers() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {customers.map((customer) => (
+                                {customers?.map((customer) => (
                                     <TableRow key={customer.id}>
                                         <TableCell>{customer.name}</TableCell>
                                         <TableCell>{customer.cnpj}</TableCell>
