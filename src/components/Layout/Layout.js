@@ -20,6 +20,7 @@ import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
+import CustomersForm from "../../pages/register/customers/CustomersForm";
 import Customers from "../../pages/register/customers/Customers";
 import Providers from "../../pages/register/providers/Providers";
 import Invoices from "../../pages/register/invoices/Invoices";
@@ -47,6 +48,7 @@ function Layout(props) {
           <Switch>
             <Route path="/app/dashboard" component={Dashboard} />
             <Route path="/app/cadastros/clientes" component={Customers} />
+            <Route path="/app/cadastros/clientes-form" component={CustomersForm} />
             <Route path="/app/cadastros/fornecedores" component={Providers} />
             <Route path="/app/cadastros/notas-fiscais" component={Invoices} />
 
