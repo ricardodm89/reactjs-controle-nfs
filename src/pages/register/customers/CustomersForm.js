@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, Paper, TextField } from "@material-ui/core";
 import { useFormik } from 'formik'
 import * as yup from "yup";
+import validationCustomers from "./validationCustomers";
 import onBlurCep from '../../../shared/getCEP';
 
 import PageTitle from "../../../components/PageTitle";
@@ -51,55 +52,7 @@ function CustomersForm() {
 
     const formik = useFormik({
         initialValues: initialValuesCustomer,
-        validationSchema: yup.object({
-            corporate_name: yup
-                .string("Digite a razão social")
-                .required("Razão Social é obrigatório."),
-            name: yup
-                .string("Digite o nome fantasia")
-                .required("Nome Fantasia é obrigatório."),
-            cnpj: yup
-                .string("Digite o CNPJ")
-                .required("CNPJ é obrigatório."),
-            status: yup
-                .string('Selecione o status')
-                .required('Status é obrigatório'),
-            segment: yup
-                .string('Digite o Segmento')
-                .required('Segmento é obrigatório'),
-            cep: yup
-                .string('Digite o CEP')
-                .required('CEP é obrigatório'),
-            street: yup
-                .string('Digite o logradouro')
-                .required('Logradouro é obrigatório'),
-            number: yup
-                .string('Digite o número')
-                .required('Número é obrigatório'),
-            adjunct: yup
-                .string('Digite o completemento'),
-            neighborhood: yup
-                .string('Digite o bairro')
-                .required('Bairro é obrigatório'),
-            city: yup
-                .string('Digite a cidade')
-                .required('Cidade é obrigatória'),
-            uf: yup
-                .string('Selecione o estado')
-                .required('Estado é obrigatório'),
-            phone: yup
-                .string('Digite o telefone')
-                .required('Telefone é obrigatório'),
-            phone_other: yup
-                .string('Digite o telefone'),
-            email: yup
-                .string('Digite o e-mail')
-                .required('E-mail é obrigatório'),
-        }),
-        onBlur: (field, { setFieldValue }) => {
-            // console.log('ONBLUR');
-            // setFieldValue(field);
-        },
+        validationSchema: validationCustomers,
         onSubmit: (values, { resetForm }) => {
             // console.log('submit: ', values)
             api.post('/customers', values, {});
@@ -132,14 +85,6 @@ function CustomersForm() {
         <>
             <PageTitle title="Cadastro de Clientes" />
             <Paper elevation={3}>
-
-                {/* {customers?.map((customer, index) => (
-                    <div key={index}>
-                        <div>{customer.name}</div>
-                        <div>{customer.email}</div>
-                        <div>{customer.cnpj}</div>
-                    </div>
-                ))} */}
                 <Box padding={4}>
                     <form
                         onSubmit={formik.handleSubmit}

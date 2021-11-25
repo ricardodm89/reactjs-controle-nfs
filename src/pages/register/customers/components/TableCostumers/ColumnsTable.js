@@ -1,13 +1,13 @@
-const FieldTable = [
+const ColumnsTable = [
   {
     id: 'nome',
-    label: 'Nome',
+    label: 'Nome Fantasia',
     minWidth: 170,
     align: 'left'
   },
   {
-    id: 'cpf',
-    label: 'CPF',
+    id: 'cnpj',
+    label: 'CNPJ',
     minWidth: 100,
     align: 'left',
   },
@@ -15,18 +15,6 @@ const FieldTable = [
     id: 'email',
     label: 'E-mail',
     minWidth: 130,
-    align: 'left',
-  },
-  {
-    id: 'occupation',
-    label: 'Função',
-    minWidth: 100,
-    align: 'left',
-  },
-  {
-    id: 'login',
-    label: 'Login',
-    minWidth: 100,
     align: 'left',
   },
   {
@@ -49,4 +37,4 @@ const FieldTable = [
   },
 ];
 
-export default FieldTable;
+export default ColumnsTable;

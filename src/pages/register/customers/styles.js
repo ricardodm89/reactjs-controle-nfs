@@ -1,3 +1,4 @@
+import { NoEncryption } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 
 export default makeStyles(theme => ({
@@ -13,5 +14,8 @@ export default makeStyles(theme => ({
   },
   button: {
     margin: 10
+  },
+  link: {
+    textDecoration: 'none',
   }
 }));
